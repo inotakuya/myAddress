@@ -37,23 +37,59 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 export default {
+  created() {
+    this.addressId = this.$route.params.address_id;
+    if (!this.addressId) {
+      // 新規登録の場合は、連絡先の情報を取得しない
+      return;
+    }
+    // IDをキーにして、連絡先情報を取得
+    const address = this.getAddressById(this.addressId);
+    if (address) {
+      // 取得できた場合は、連絡先を画面に設定する
+      this.address = address;
+    } else {
+      // 取得できない場合は、連絡先一覧に遷移する
+      this.$router.push({ name: "addresses" });
+    }
+  },
   data() {
     return {
-      address: {}
+      address: {},
+      addressId: null
     };
   },
+  computed: {
+    ...mapGetters([
+      // Idをキーとして、連絡先を取得
+      "getAddressById"
+    ])
+  },
+
   methods: {
     submit() {
-      this.addAddress(this.address);
+      if (this.addressId) {
+        // IDが存在する場合は更新
+        this.updateAddress({
+          id: this.addressId,
+          address: this.address
+        });
+      } else {
+        // 新規登録
+        this.addAddress(this.address);
+      }
       // 連絡先一覧に遷移
       this.$router.push({ name: "addresses" });
       this.address = {};
     },
+
     ...mapActions([
       // 連絡先を追加
-      "addAddress"
+      "addAddress",
+      // 連絡先を更新
+      "updateAddress"
     ])
   }
 };
