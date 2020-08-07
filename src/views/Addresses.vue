@@ -1,0 +1,33 @@
+<template>
+  <v-container text-center justify-center>
+    <v-layout wrap>
+      <v-flex xs12>
+        <h1>連絡先一覧</h1>
+      </v-flex>
+
+      <v-flex xs12 mt-5 text-right> </v-flex>
+
+      <v-flex xs12 mt-3 justify-center>
+        <v-data-table :headers="headers" :items="addresses">
+          <template v-slot:item> </template>
+        </v-data-table>
+      </v-flex>
+    </v-layout>
+  </v-container>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      headers: [
+        { text: "名前", value: "name" },
+        { text: "電話番号", value: "tel" },
+        { text: "メールアドレス", value: "email" },
+        { text: "住所", value: "address" }
+      ],
+      addresses: []
+    };
+  }
+};
+</script>
