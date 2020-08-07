@@ -29,14 +29,25 @@ export default {
   created() {
     // 現在ログインしているユーザーを取得する
     firebase.auth().onAuthStateChanged(user => {
+      const cuurentRouteName = this.$router.currentRoute.name;
       if (user) {
         // ユーザーを取得できた場合ログイン情報をセットする
         this.setLoginUser(user);
         // 連絡先情報をすべて取得
         this.fetchAddresses();
+        if (cuurentRouteName === "home") {
+          // ホームの場合、連絡先一覧画面に遷移する
+          this.$router.push({ name: "addresses" }, () => {});
+        }
       } else {
         // ログイン情報を削除する
         this.deleteLoginUser();
+          // 連絡先情報をすべて削除
+        this.deleteAddresses();
+        if (cuurentRouteName === "addresses") {
+          // 連絡先一覧画面の場合、ホームに遷移する
+          this.$router.push({ name: "home" }, () => {});
+        }
       }
     });
   },
@@ -57,7 +68,9 @@ export default {
       // ログアウトする
       "logout",
       // 連絡先一覧情報取得
-      "fetchAddresses"
+      "fetchAddresses",
+      // 連絡先一覧情報削除
+      "deleteAddresses"
     ])
   }
 };
