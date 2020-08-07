@@ -30,6 +30,7 @@ export default {
   data() {
     return {
       items: [
+        { title: "HOME", icon: "mdi-home", link: { name: "home" } },
         { title: "連絡先一覧", icon: "mdi-menu", link: { name: "addresses" } }
       ]
     };

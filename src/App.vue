@@ -44,8 +44,8 @@ export default {
         this.deleteLoginUser();
           // 連絡先情報をすべて削除
         this.deleteAddresses();
-        if (cuurentRouteName === "addresses") {
-          // 連絡先一覧画面の場合、ホームに遷移する
+        if (cuurentRouteName !== "home") {
+          // ホーム画面以外の場合、ホームに遷移する
           this.$router.push({ name: "home" }, () => {});
         }
       }
