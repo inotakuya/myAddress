@@ -1,14 +1,24 @@
-# myAddress
-連絡先を登録・表示するWEBアプリケーション
+# my-address
 
-### 言語
-JavaScript
+## Project setup
+```
+npm install
+```
 
-### フレームワーク
-vue, vue-router, vuex, vuetify 
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
 
-### API
-firebase
+### Compiles and minifies for production
+```
+npm run build
+```
 
-### DBライブラリ
-Cloud Firestore
+### Lints and fixes files
+```
+npm run lint
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
