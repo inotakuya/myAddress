@@ -9,17 +9,18 @@
       </v-flex>
 
       <v-flex xs12 mt-5>
-        <v-btn color="info">Googleアカウントでログイン</v-btn>
+        <v-btn color="info" @click="login">Googleアカウントでログイン</v-btn>
       </v-flex>
     </v-layout>
   </v-container>
 </template>
 
 <script>
-// @ is an alias to /src
-
+import { mapActions } from "vuex";
 export default {
   name: "Home",
-  components: {},
+  methods: {
+    ...mapActions(["login"]),
+  },
 };
 </script>

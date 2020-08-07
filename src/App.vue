@@ -7,7 +7,6 @@
       </v-toolbar-title>
       <v-spacer></v-spacer>
     </v-app-bar>
-    <SideNav></SideNav>
     <v-main>
       <router-view></router-view>
     </v-main>
