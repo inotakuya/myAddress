@@ -24,6 +24,9 @@
             >
               <v-icon small class="mr-2">mdi-pencil</v-icon>
             </router-link>
+            <v-icon small class="mr-2" @click="deleteConfirm(item.id)"
+              >mdi-delete</v-icon
+            >
           </template>
         </v-data-table>
       </v-flex>
@@ -32,9 +35,8 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 export default {
-  
   data() {
     return {
       headers: [
@@ -51,6 +53,14 @@ export default {
       // 連絡先一覧取得
       "addresses"
     ])
+  },
+  methods: {
+    deleteConfirm(id) {
+      if (confirm("削除してよろしいでですか？")) {
+        this.deleteAddress( id );
+      }
+    },
+    ...mapActions(["deleteAddress"])
   }
 };
 </script>

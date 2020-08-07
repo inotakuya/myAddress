@@ -22,6 +22,11 @@ const mutations = {
     const index = getIndex(state, id);
     state.addresses[index] = address;
   },
+  // 連絡先情報を削除
+  deleteAddress(state, id) {
+    const index = getIndex(state, id);
+    state.addresses.splice(index, 1);
+  },
   // 連絡先一覧情報を削除
   deleteAddresses(state) {
     state.addresses = [];
@@ -61,6 +66,19 @@ const actions = {
       .update(address)
       .then(() => {
         commit("updateAddress", { id, address });
+      });
+  },
+  // 連絡先を削除
+  deleteAddress({ getters, commit }, id) {
+    if (!getters.isUser) {
+      // ユーザー情報が取得できない場合は、何もしない
+      return;
+    }
+    selectAddresses(getters.uid)
+      .doc(id)
+      .delete()
+      .then(() => {
+        commit("deleteAddress", id);
       });
   },
   deleteAddresses({ commit }) {
