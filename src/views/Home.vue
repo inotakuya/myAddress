@@ -20,7 +20,7 @@ import { mapActions } from "vuex";
 export default {
   name: "Home",
   methods: {
-    ...mapActions(["login"]),
-  },
+    ...mapActions(["login"])
+  }
 };
 </script>
