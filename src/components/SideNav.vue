@@ -2,9 +2,11 @@
   <v-navigation-drawer v-model="$store.state.drawer" absolute temporary>
     <v-list>
       <v-list-item>
-        <v-list-item-avatar> </v-list-item-avatar>
+        <v-list-item-avatar>
+          <img v-if="photoURL" :src="photoURL" />
+        </v-list-item-avatar>
         <v-list-item-content>
-          <v-list-item-title></v-list-item-title>
+          <v-list-item-title>{{ userName }}</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
 

@@ -16,18 +16,32 @@
 
 <script>
 import SideNav from "./components/SideNav";
+import firebase from "firebase/app";
+import "firebase/auth";
 import { mapActions } from "vuex";
+
 export default {
   name: "App",
   components: { SideNav },
+  created() {
+    // 現在ログインしているユーザーを取得する
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        // ユーザーを取得できた場合ログイン情報をセットする
+        this.setLoginUser(user);
+      }
+    });
+  },
   data: () => ({
     drawer: false
   }),
   methods: {
-    ...mapActions({
+    ...mapActions([
       // ナビゲーションドロワーを開く
-      toggleSideMenu: "toggleSideMenu"
-    })
+      "toggleSideMenu",
+      // ログイン情報をセットする
+      "setLoginUser"
+    ])
   }
 };
 </script>
