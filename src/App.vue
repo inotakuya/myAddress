@@ -21,8 +21,7 @@
 import SideNav from "./components/SideNav";
 import firebase from "firebase/app";
 import "firebase/auth";
-import { mapGetters } from "vuex";
-import { mapActions } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "App",
@@ -33,6 +32,8 @@ export default {
       if (user) {
         // ユーザーを取得できた場合ログイン情報をセットする
         this.setLoginUser(user);
+        // 連絡先情報をすべて取得
+        this.fetchAddresses();
       } else {
         // ログイン情報を削除する
         this.deleteLoginUser();
@@ -54,7 +55,9 @@ export default {
       // ログイン情報を削除する
       "deleteLoginUser",
       // ログアウトする
-      "logout"
+      "logout",
+      // 連絡先一覧情報取得
+      "fetchAddresses"
     ])
   }
 };

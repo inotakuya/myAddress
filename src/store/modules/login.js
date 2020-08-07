@@ -11,7 +11,9 @@ const getters = {
   // ユーザー名を取得
   userName: state => (state.loginUser ? state.loginUser.displayName : ""),
   // プロフィール社員のURLを取得
-  photoURL: state => (state.loginUser ? state.loginUser.photoURL : "")
+  photoURL: state => (state.loginUser ? state.loginUser.photoURL : ""),
+  // ユーザーIDを取得
+  uid: state => (state.loginUser ? state.loginUser.uid : null)
 };
 
 const mutations = {
